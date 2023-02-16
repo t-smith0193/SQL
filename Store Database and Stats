@@ -1,0 +1,24 @@
+// Create a grocery store database
+CREATE TABLE store (id integer primary key, name text, cost integer, stock integer, color text);
+
+INSERT INTO store VALUES (1, "bike", 150, 3, "blue");
+INSERT INTO store VALUES (2, "shoes", 20, 1, "black");
+INSERT INTO store VALUES (3, "candle", 10, 3, "purple");
+INSERT INTO store VALUES (4, "computer", 300, 1, "black");
+INSERT INTO store VALUES (5, "camera", 45, 4, "green");
+INSERT INTO store VALUES (6, "matches", 10, 30, "brown");
+INSERT INTO store VALUES (7, "postcards", 1, 100, "pink");
+INSERT INTO store VALUES (8, "book", 7, 20, "white");
+INSERT INTO store VALUES (9, "candy", 5, 20, "pink");
+INSERT INTO store VALUES (10, "mirror", 25, 3, "white");
+INSERT INTO store VALUES (11, "car", 10000, 1, "black");
+INSERT INTO store VALUES (12, "poster", 3, 32, "gold");
+INSERT INTO store VALUES (13, "door", 45, 2, "brown");
+INSERT INTO store VALUES (14, "lightbulb", 15, 3, "white");
+INSERT INTO store VALUES (15, "carpet", 100, 3, "yellow");
+
+// Display the database ordered by cost
+SELECT name ,cost FROM store ORDER BY cost;
+
+// What is the total dollar amount of on hand inventory
+SELECT sum(cost*stock) FROM store;
