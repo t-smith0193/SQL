@@ -1,0 +1,77 @@
+/* Create tables */
+
+CREATE TABLE persons (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT, 
+    age INTEGER);
+    
+INSERT INTO persons (fullname, age) VALUES ("Johnny Depp", "59");
+INSERT INTO persons (fullname, age) VALUES ("Elon Musk", "51");
+INSERT INTO persons (fullname, age) VALUES ("Tom Brady", "45");
+INSERT INTO persons (fullname, age) VALUES ("Michael Phelps", "37");
+INSERT INTO persons (fullname, age) VALUES ("Ariana Grande", "29");
+INSERT INTO persons (fullname, age) VALUES ("Prince Harry", "38");
+INSERT INTO persons (fullname, age) VALUES ("Joe Biden", "80");
+
+CREATE table sports (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    name TEXT);
+    
+INSERT INTO sports (person_id, name) VALUES (3, "football");
+INSERT INTO sports (person_id, name) VALUES (4, "swimming");
+
+CREATE table jobs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    job TEXT);
+    
+INSERT INTO jobs (person_id, job) VALUES (1, "actor");
+INSERT INTO jobs (person_id, job) VALUES (2, "entrepreneur");
+INSERT INTO jobs (person_id, job) VALUES (3, "athlete");
+INSERT INTO jobs (person_id, job) VALUES (4, "athlete");
+INSERT INTO jobs (person_id, job) VALUES (5, "artist");
+INSERT INTO jobs (person_id, job) VALUES (6, "politics");
+INSERT INTO jobs (person_id, job) VALUES (7, "politics");
+
+/* Join persons table to jobs table on person ID*/
+
+SELECT persons.fullname, persons.age, jobs.job 
+FROM persons
+JOIN jobs 
+ON persons.id = jobs.person_id;
+
+/* Order persons by age */
+
+SELECT persons.fullname, persons.age, jobs.job
+FROM persons
+JOIN jobs 
+ON persons.id = jobs.person_id
+ORDER BY age DESC;
+
+/* Only display people under age 50 */
+
+SELECT persons.fullname, persons.age, jobs.job
+FROM persons
+JOIN jobs 
+ON persons.id = jobs.person_id
+WHERE age < 50
+ORDER BY age DESC;
+
+/* Group by occupation (job) */
+
+SELECT persons.fullname, persons.age, jobs.job
+FROM persons
+JOIN jobs 
+ON persons.id = jobs.person_id
+ORDER BY job;
+
+/* Join third table (sports) to view specific sports that the athletes play */
+
+SELECT persons.fullname, persons.age, jobs.job, sports.name
+FROM persons 
+LEFT OUTER JOIN sports 
+ON sports.person_id = persons.id
+JOIN jobs
+ON jobs.person_id = persons.id
+ORDER BY sports.name DESC;
